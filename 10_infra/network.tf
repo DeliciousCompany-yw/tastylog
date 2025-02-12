@@ -105,10 +105,10 @@ resource "aws_route_table" "private_rt" {
   route = []
 
   tags = {
-    Name    =    "${var.project}-${var.environment}-private-rt"
-    Project     = var.project
-    Env     =    var.environment
-    Type       = "private"
+    Name    = "${var.project}-${var.environment}-private-rt"
+    Project = var.project
+    Env     = var.environment
+    Type    = "private"
   }
 }
 
