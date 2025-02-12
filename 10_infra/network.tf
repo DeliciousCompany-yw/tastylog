@@ -100,14 +100,14 @@ resource "aws_route_table_association" "public_rt_1c" {
 }
 
 resource "aws_route_table" "private_rt" {
-  vpc_id     = aws_vpc.vpc.id
+  vpc_id = aws_vpc.vpc.id
 
   route = []
 
   tags = {
-    Name          = "${var.project}-${var.environment}-private-rt"
+    Name    = "${var.project}-${var.environment}-private-rt"
     Project = var.project
-    Env         = var.environment
+    Env     = var.environment
     Type    = "private"
   }
 }
