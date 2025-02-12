@@ -105,16 +105,16 @@ resource "aws_route_table" "private_rt" {
   route = []
 
   tags = {
-    Name    = "${var.project}-${var.environment}-private-rt"
+    Name    =　　　 "${var.project}-${var.environment}-private-rt"
     Project = var.project
-    Env     = var.environment
+    Env     　　　= var.environment
     Type    = "private"
   }
 }
 
 resource "aws_route_table_association" "private_rt_1a" {
-  route_table_id = aws_route_table.private_rt.id
-  subnet_id      = aws_subnet.private_subnet_1a.id
+  route_table_id 　　　= aws_route_table.private_rt.id
+  subnet_id      = 　　　aws_subnet.private_subnet_1a.id
 }
 
 resource "aws_route_table_association" "private_rt_1c" {
