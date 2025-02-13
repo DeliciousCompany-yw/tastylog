@@ -11,7 +11,9 @@ jobs:
       - name: Slack notify
         uses: slackapi/slack-github-action@v2.0.0
         with:
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
           payload: |
+            channel: "C08D2JEK612"
             {
               "attachments": [
                 {
@@ -35,6 +37,3 @@ jobs:
                 }
               ]
             }          
-            channel: "C08D2JEK612"
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
