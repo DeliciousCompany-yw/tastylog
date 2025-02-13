@@ -25,7 +25,7 @@ defaults:
     working-directory: "10_infra/"
 
 jobs:
-  preivew:
+  preview:
     name: "Preview"
     runs-on: ubuntu-latest
     outputs:
