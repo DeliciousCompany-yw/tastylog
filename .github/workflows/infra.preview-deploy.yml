@@ -28,6 +28,8 @@ jobs:
   preivew:
     name: "Preview"
     runs-on: ubuntu-latest
+    outputs:
+      TF_PLAN_EXITCODE: ${{ steps.plan.outputs.exitcode }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,6 +52,8 @@ jobs:
         run: |
           terraform validate -no-color
       - name: Terraform plan
+        id: plan
+        continue-on-error: true
         run: |
           terraform plan \
             -var 'project=${{ env.TF_PROJECT }}' \
@@ -59,3 +63,16 @@ jobs:
             -input=false \
             -no-color \
             -detailed-exitcode
+      - name: Slack notify
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload: |
+            channel: "C08D2JEK612"        
+            text: "Request for approve \n ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            blocks:
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
