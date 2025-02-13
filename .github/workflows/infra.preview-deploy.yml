@@ -103,7 +103,7 @@ jobs:
       - name: Terraform apply
         id: apply
         run: |
-          terraform apply \
+          terraform destroy \
             -var 'project=${{ env.TF_PROJECT }}' \
             -var 'environment=${{ env.TF_ENVIRONMENT }}' \
             -var 'username=${{ secrets.MYSQL_USERNAME }}' \
